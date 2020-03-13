@@ -15,10 +15,10 @@ Kelompok C03:
 1. Buatlah program C yang menyerupai crontab untuk menjalankan script bash dengan
 ketentuan sebagai berikut:
 * Program menerima 4 argumen berupa:
-i. Detik: 0-59 atau * (any value)
-ii. Menit: 0-59 atau * (any value)
-iii. Jam: 0-23 atau * (any value)
-iv. Path file .sh
+  * Detik: 0-59 atau * (any value)
+  * Menit: 0-59 atau * (any value)
+  * Jam: 0-23 atau * (any value)
+  * Path file .sh
 * Program akan mengeluarkan pesan error jika argumen yang diberikan tidak
 sesuai
 * Program hanya menerima 1 config cron
