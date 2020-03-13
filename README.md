@@ -16,7 +16,7 @@ Kelompok C03:
    _**Soal:**_\
 ### Soal 3
 
-_**Soal:**_\
+_**Soal 3:**_\
 Jaya adalah seorang programmer handal mahasiswa informatika. Suatu hari dia
 memperoleh tugas yang banyak dan berbeda tetapi harus dikerjakan secara bersamaan
 (multiprocessing).
