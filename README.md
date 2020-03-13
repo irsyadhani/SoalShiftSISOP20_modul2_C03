@@ -28,7 +28,7 @@ sesuai
 Contoh: ./program \* 34 7 /home/somi/test.sh
 Program dengan argumen seperti contoh di atas akan menjalankan script test.sh setiap
 detik pada jam 07:34.
-> Source Code: [Sumber]
+> Source Code: [Sumber](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal1/soal1.c)
 ### Soal 2
    _**Soal:**_\
 ### Soal 3
