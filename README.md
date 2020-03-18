@@ -105,7 +105,30 @@ pid_t child = fork();
                                     char* argv[] = {"mv", path_file, "/home/irsyad/modul2/indomie/", NULL}; //memindahkan path direktori
                                     execv("/bin/mv", argv); // argumen pindah path direktori
                                 
-                                }
+                                }else{ 
+		  //soal 3d
+	          while((dir = readdir(directory)) != NULL){
+	            pid_t child_indomie = fork();
+		    int kasus;
+ 	            if(child_indomie == 0){
+ 	              char target_file[1000];
+	              FILE *target;
+	              sprintf(target_file, "/home/syarif/sisop20/modul2/shift_modul2/soal3/indomie/%s/coba1.txt", dir->d_name);
+                      target = fopen(target_file,"w");
+                      fclose(target);
+                    }
+	            else{
+	              while((wait(&kasus)) > 0);
+	              sleep(3);
+ 	              char target_file[1000];
+	              FILE *target;
+	              sprintf(target_file, "/home/syarif/sisop20/modul2/shift_modul2/soal3/indomie/%s/coba2.txt", dir->d_name);
+	              target = fopen(target_file,"w");
+	              fclose(target);
+		      exit(0);
+	            }
+	          }
+		}
                             }
                         }else{ //pengecualian untuk memindahkan file
                             char* argv[] = {"mv", path_file, "/home/irsyad/modul2/sedaap/", NULL}; //selain sesuai perintah diatas akan dipindah ke folder sedaap
