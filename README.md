@@ -37,7 +37,7 @@ detik pada jam 07:34.
    _**Soal:**_\
 ### Soal 3
 
-_**Soal 3:**_
+_**Soal:**_
 
 Jaya adalah seorang programmer handal mahasiswa informatika. Suatu hari dia
 memperoleh tugas yang banyak dan berbeda tetapi harus dikerjakan secara bersamaan
