@@ -52,6 +52,7 @@ Program buatan jaya harus bisa membuat dua direktori di
 lima detik kemudian membuat direktori yang kedua bernama **“sedaap”**.
 
 _**Penyelesaian:**_
+
 Kita menggunakan fungsi ```EXIT_FAILURE``` untuk fungsi program berhenti jika program gagal jalan, menggunakan fungsi ```mkdir``` untuk membuat folder serta argumen ```execv``` dan ```bin/mkdir```, disini kita membuat 2 folder yaitu folder yang bernama **"indomie"** dan **“sedaap”**, fungsi ```sleep(5)``` membuat folder **"sedaap"** setelah 5 detik.
 ```c
 if (child == 0){
@@ -83,6 +84,7 @@ Kemudian program tersebut harus meng-ekstrak file **jpg.zip** di direktori
 hanya itu tugasnya.
 
 _**Penyelesaian:**_
+
 Kita membuat ```while ((wait(&status)) > 0);``` untuk melanjutkan urutan programmnya, membuat ```fork``` untuk membuat program baru, ```EXIT_FAILURE``` untuk fungsi program berhenti jika program gagal jalan, fungsi ```unzip``` untuk mengekstrak file **jpg.zip** serta argumen ```execv``` dan ```/usr/bin/unzip```.
 ```c
 while ((wait(&status)) > 0);
@@ -110,6 +112,7 @@ pengelompokan, semua file harus dipindahkan ke
 **“/home/[USER]/modul2/indomie/”**.
 
 _**Penyelesaian:**_
+
 Kita membuat ```while ((wait(&status)) > 0);``` untuk melanjutkan urutan programmnya, fungsi ```chdir``` untuk mengubah direktori ke **jpg**, membuat pointer ```DIR```, fungsi ```opendir``` untuk membuka direktori handle, fungsi ```struct``` untuk membuat status di tiap proses, ```if(directory)``` mengecek directory, fungsi ```while``` untuk membuat perulangan sampai nilainya ```NULL```, membuat ```fork``` lagi untuk membuat program, ```dir->d_name``` untuk membuat variabel untuk mengambil nama direktori, ```EXIT_FAILURE``` untuk fungsi program berhenti jika program gagal jalan, ```char``` membuat string name, ```sprintf``` untuk print direktori ke ```dir->d_name```, fungsi ```S_ISDIR``` untuk mengecek apakah sebuah direktori, fungsi ```strcmp``` untuk perbandingan string untuk string . dan .. , jika terdeteksi folder akan dipindahkan ke folder **"indomie"** dengan menggunakan fungsi ```mv``` dan argumen ```/bin/mv```, selain itu (terdeteksi file) maka dipindahkan ke folder **"sedaap"**
 ```c
 while ((wait(&status)) > 0);
@@ -162,6 +165,7 @@ harus membuat dua file kosong. File yang pertama diberi nama **“coba1.txt”**
 3 detik kemudian membuat file bernama **“coba2.txt”**.
 
 _**Penyelesaian:**_
+
 Kita mengecek direktori ```(dir = readdir(directory)) != NULL```, membuat program baru dan kasus untuk melanjutkan programnya, membuat string untuk print dengan fungsi ```sprintf```, membuat pointer ```FILE``` untuk mengarahkan direktorinya, fungsi ```fopen``` untuk membuat file dan fungsi  ```w``` untuk wrie-only yang hanya bisa membuat file jika belum ada, ```fclose``` untuk menutup ```fopen``` tadi, disini kita membuat 2 file yaitu **coba1.txt** dan menggunakan fungsi ```sleep(3)``` untuk membuat file selanjutnya **coba2,txt**, ```exit(0)``` untuk menutup program, dan fungsi ```closedir``` untuk menutup semua direktori
 ```c
 while((dir = readdir(directory)) != NULL){
