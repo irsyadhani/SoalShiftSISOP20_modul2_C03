@@ -7,8 +7,8 @@
 #include <sys/wait.h>
 
 int main(){
-    pid_t child = fork();
-    int status;    
+    pid_t child = fork(); //membuat fork (program)
+    int status; //membuat integer status   
     if (child < 0){
         exit(EXIT_FAILURE); // Jika gagal membuat proses baru, program akan berhenti
     }
@@ -48,17 +48,16 @@ int main(){
             directory = opendir("."); //membuka direktori handle
             struct dirent *dir; //pointer untuk ke nama folder
             if(directory){ //mengecek directory
-                
-while((dir = readdir(directory)) != NULL){ //mengecek directory ada
-                    pid_t child_tim = fork(); //membuat fork (program)
+                while((dir = readdir(directory)) != NULL){ //mengecek directory ada
+                    pid_t child_team = fork(); //membuat fork (program)
                     struct stat st; //status untuk setiap proses
                     stat(dir->d_name, &st); //membuat variabel untuk mengambil nama direktori
                     
-                    if(child_tim < 0){
+                    if(child_team < 0){
                         exit(EXIT_FAILURE); // Jika gagal membuat proses baru, program akan berhenti
                     }
             
-                    if(child_tim == 0){
+                    if(child_team == 0){
                         char path_file[1000]; //membuat string array sebanyak 1000
                         sprintf(path_file, "/home/irsyad/modul2/jpg/%s", dir->d_name); //print direktori
                     
@@ -75,31 +74,30 @@ while((dir = readdir(directory)) != NULL){ //mengecek directory ada
                                 if(child_txt == 0){
                                     char* argv[] = {"mv", path_file, "/home/irsyad/modul2/indomie/", NULL}; //memindahkan path direktori
                                     execv("/bin/mv", argv); // argumen pindah path direktori
+                                }else{
+                                    //Soal 3d
+                                    while((dir = readdir(directory)) != NULL){ //mengecek directory
+                                        pid_t child_indomie = fork(); //membuat fork (program)
+                                        int kasus; //membuat integer kasus
                                 
-                                }else{ 
-		  //soal 3d
-	          while((dir = readdir(directory)) != NULL){
-	            pid_t child_indomie = fork();
-		    int kasus;
- 	            if(child_indomie == 0){
- 	              char target_file[1000];
-	              FILE *target;
-	              sprintf(target_file, "/home/syarif/sisop20/modul2/shift_modul2/soal3/indomie/%s/coba1.txt", dir->d_name);
-                      target = fopen(target_file,"w");
-                      fclose(target);
-                    }
-	            else{
-	              while((wait(&kasus)) > 0);
-	              sleep(3);
- 	              char target_file[1000];
-	              FILE *target;
-	              sprintf(target_file, "/home/syarif/sisop20/modul2/shift_modul2/soal3/indomie/%s/coba2.txt", dir->d_name);
-	              target = fopen(target_file,"w");
-	              fclose(target);
-		      exit(0);
-	            }
-	          }
-		}
+                                        if(child_indomie == 0){
+                                            char target_file[1000]; //string target file yang dituju
+                                            FILE *target; //membuat pointer file target
+                                            sprintf(target_file, "/home/irsyad/modul2/indomie/%s/coba1.txt", dir->d_name); //print variabel di direktori name
+                                            target = fopen(target_file,"w"); // open target_file untuk di-write
+                                            fclose(target);//menutup pointer target 
+                                        }else{
+                                            while((wait(&kasus)) > 0); //agar bisa urut 
+                                            sleep(3); //menjalankan program setelah 3 detik
+                                            char target_file[1000]; //membuat string array jumlah 100
+                                            FILE *target; //membuat file pointer target
+                                            sprintf(target_file, "/home/irsyad/modul2/indomie/%s/coba2.txt", dir->d_name); //print variabel di direktori name
+                                            target = fopen(target_file,"w");// open target_file untuk di-write
+                                            fclose(target);//menutup pointer target 
+                                            exit(0); //keluar semua program
+                                        }
+                                    }
+                                }
                             }
                         }else{ //pengecualian untuk memindahkan file
                             char* argv[] = {"mv", path_file, "/home/irsyad/modul2/sedaap/", NULL}; //selain sesuai perintah diatas akan dipindah ke folder sedaap
