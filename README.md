@@ -184,7 +184,7 @@ menterminasi ini lalu akan mendelete dirinya sendiri.
 
 _**Penyelesaian:**_
 
-Kita membuat pointer kill untuk nantinya membuat file *_killer.sh_* dengan fungsi ```fopen``` yang didalamnya akan di isi dengan bash untuk membunuh program, dengan perintah ```fprintf```, selanjutnya kita membuat program ```fork``` dan ```exec``` agar mengganti hak akses file ke user untuk mengeksekusi kill.sh
+Kita membuat pointer kill untuk nantinya membuat file *_killer.sh_* dengan fungsi ```fopen``` yang didalamnya akan di isi dengan bash untuk membunuh program, dengan perintah ```fprintf```, selanjutnya kita membuat program ```fork``` dan ```exec```, menggunakan fungsi ```chmod u+x``` untuk mengganti hak akses file ke user untuk mengeksekusi killer.sh. 
 ```c
 int main(int argc, char* argv[]){
    ...
@@ -213,7 +213,7 @@ Hasil eksekusi program:
 
 #
 
-#### Soal 2.d:
+#### Soal 2.e:
 Kiwa menambahkan bahwa program **utama** bisa dirun dalam dua mode, yaitu
 MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan
 dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen
@@ -225,13 +225,20 @@ folder terisi gambar, terzip lalu di delete).
 
 _**Penyelesaian:**_
 
-
-
+Kita mengecek jika argumen char ```argc``` tidak sama dengan 2 atau inputan argumen yang bukan di passing ```argv``` sama dengan a dan b maka muncul tulisan *_Invalid argumen, Input -a  or -b_* , selanjutnya memakai ```prctl``` sebagai system call linux, ```PR_SET_PDEATHSIG``` dan ```SIGHUP``` keduanya untuk menge*_set_* signal death dan memberhentikan program.
 ```c
-kode
+if(argc != 2 || (argv[1][1] != 'a' && argv[1][1] != 'b')){
+    printf("Invalid argumen, Input -a  or -b\n");
+    exit(0); //keluar terminal
+}
+...
+if(argv[1][1] == 'a') prctl(PR_SET_PDEATHSIG, SIGHUP);
 ```
 Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e.png "Hasil Soal 2e")
+
+_**Kendala:**_
+Dalam interval setelah 30 detik membuat folder sudah berhasil, akan tetapi pada saat membuat folder selanjutnya lagi dibuat dalam interval 1,5 menit yang seharusnya tidak ada di perintah soal.
 
 #
 
