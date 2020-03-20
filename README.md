@@ -240,6 +240,8 @@ Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e-b.png "Hasil Soal 2e dengan mode -b")
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e-b(result).png "Hasil Soal 2e mode -b dengan melihatkan proses PID")
 
+#
+
 _**Kendala:**_
 Dalam interval setelah 30 detik membuat folder sudah berhasil, akan tetapi pada saat membuat folder selanjutnya lagi dibuat dalam interval 1,5 menit yang seharusnya tidak ada di perintah soal.
 
@@ -406,6 +408,7 @@ Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal3/gambar/soal3d(744).png "Hasil Soal 3d(744)")
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal3/gambar/soal3d(3577).png "Hasil Soal 3d(3577)")
 
+#
 
 _**Kendala:**_
 tidak bisa memasukkan file coba1.txt dan coba2.txt ke seluruh folder, hanya bisa memasukkan secara acak ke berbagai folder
