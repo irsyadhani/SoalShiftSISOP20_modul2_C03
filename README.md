@@ -20,7 +20,7 @@ Kelompok C03:
 ----------------------------------------------------------------
 
 # Soal 1 (Program C Menyerupai Crontab)
-   _**Soal:**_\
+   _**Soal:**_
 1. Buatlah program C yang menyerupai crontab untuk menjalankan script bash dengan
 ketentuan sebagai berikut:
 * Program menerima 4 argumen berupa:
@@ -59,10 +59,27 @@ timestamp **[YYYY-mm-dd_HH:ii:ss]**.
 
 _**Penyelesaian:**_
 
-
-
+Pertama kita membuat fungsi manipulasi waktu yaitu ```time_t```, kita membuat passing waktu lokal yang sesuai menggunakaan ```localtime```, fungsi ```strftime``` untuk format waktu dan disimpan di string  *_currenttime_* , membuat ```fork``` dan ```exec``` lalu membuat fungsi ```mkdir``` untuk membuat direktori atau folder, dengan selang interval 30 detik maka menggunakan fungsi ```sleep(30)```.
 ```c
-kode
+while(1){
+        char currenttime[50];
+        time_t now = time(NULL);
+        struct tm* local = localtime(&now);
+        strftime(currenttime, 30, "%Y-%m-%d_%H:%M:%S", local);
+
+        pid_t child;
+        child = fork();
+
+        if(child < 0){
+            exit(0);
+        }
+
+        if(child == 0){
+            char *argv[] = {"mkdir", currenttime, NULL};
+            execv("/bin/mkdir", argv);
+        }
+    sleep(30);
+}
 ```
 Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2a.png "Hasil Soal 2a")
@@ -78,10 +95,33 @@ mm-dd_HH:ii:ss]**.
 
 _**Penyelesaian:**_
 
-
-
+Kita membuat fungsi ```chdir``` untuk merubah arah direktori ke *_currenttime_*, membuat perulangan ```for``` agar bisa mengunduh gambar sebanyak 20 gambar, membuat lagi ```strftime``` untuk menyimpan string waktu di *_currenttime2_*, menggunakan ```sprintf``` untuk mengisi string *_link_* dengan format *_(now2 % 1000) + 100_*, lalu kita membuat ```fork``` dan ```exec``` untuk membuat program ```wget``` yang berfungsi untuk mendownload gambar sesuai dengan format waktu yang ditentukan, memberikan ```sleep(5)``` untuk selang interval waktu mengunduh gambar.
 ```c
-kode
+chdir(currenttime);
+int i;
+
+for(i = 0; i < 20; i++){
+    char currenttime2[50];
+    time_t now2 = time(NULL);
+    struct tm* local2 = localtime(&now2);
+    strftime(currenttime2, 30, "%Y-%m-%d_%H:%M:%S", local2);
+
+    char link[50];
+    sprintf(link, "https://picsum.photos/%ld", (now2 % 1000) + 100);
+
+    pid_t child3;
+    child3 = fork();
+
+    if(child3 < 0){
+       exit(0);
+    }
+
+    if(child3 == 0){
+       char *argv[] = {"wget", link, "-O", currenttime2, "-o", "/dev/null", NULL}; 
+       execv("/usr/bin/wget", argv);
+    }
+    sleep(5);
+}
 ```
 Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2b.png "Hasil Soal 2b")
@@ -94,10 +134,42 @@ folder akan di delete(sehingga hanya menyisakan .zip).
 
 _**Penyelesaian:**_
 
-
-
+Kita mengubah direktori ke folder parent awal menggunakan ```chdir```, ```strcpy``` digunakan untuk menyalin nama folder *_currenttime_* lalu ```strcat``` untuk menambahkan ekstensi *_.zip_* di *_currenttime3_*. Selanjutnya membuat program ```fork``` dan ```exec``` agar folder bisa dimasukkan di zip dengan cara menggunakan fungsi ```zip``` dengan nama *_currenttime3_* kemudian kita membuat program baru lagi untuk menghapus folder yang sudah di zip tadi dengan cara ```rm -r``` yang berdasarkan dari *_currenttime_*.
 ```c
-kode
+    int status2;
+    while(wait(&status2) > 0);
+    chdir("..");
+    char currenttime3[50];
+    strcpy(currenttime3, currenttime);
+    strcat(currenttime3, ".zip");
+
+    pid_t child4;
+    child4 = fork();
+
+    if(child4 < 0){
+        exit(0);
+    }
+
+    if(child4 == 0){
+        char *argv[] = {"zip", "-r", currenttime3, currenttime, NULL};
+        execv("/usr/bin/zip", argv);
+    }
+
+    int status3;
+    while(wait(&status3) > 0);
+
+    pid_t child5;
+    child5 = fork();
+
+    if(child5 < 0){
+        exit(0);
+    }
+
+    if(child5 == 0){
+        char *argv[] = {"rm", "-r", currenttime, NULL};
+        execv("/bin/rm", argv);
+    }
+ }
 ```
 Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2c.png "Hasil Soal 2c")
@@ -112,10 +184,29 @@ menterminasi ini lalu akan mendelete dirinya sendiri.
 
 _**Penyelesaian:**_
 
-
-
+Kita membuat pointer kill untuk nantinya membuat file *_killer.sh_* dengan fungsi ```fopen``` yang didalamnya akan di isi dengan bash untuk membunuh program, dengan perintah ```fprintf```, selanjutnya kita membuat program ```fork``` dan ```exec``` agar mengganti hak akses file ke user untuk mengeksekusi kill.sh
 ```c
-kode
+int main(int argc, char* argv[]){
+   ...
+   int status;
+   FILE* kill;
+
+   kill = fopen("killer.sh", "w");
+   fprintf(kill, "#!/bin/bash\nkill %d\nkill %d\necho \'killed program.\'\nrm \"$0\"", getpid() + 2, getpid() + 3);
+   fclose(kill);
+
+   pid_t child;
+   child = fork();
+
+   if(child < 0){
+       exit(0);
+   }
+
+   if(child = 0){
+       char *argv[] = {"chmod", "u+x", "killer.sh", NULL};
+       execv("/bin/chmod", argv);
+   }
+}
 ```
 Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2d.png "Hasil Soal 2d")
@@ -304,3 +395,7 @@ closedir(directory);
 Hasil eksekusi program:
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal3/gambar/soal3d(744).png "Hasil Soal 3d(744)")
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal3/gambar/soal3d(3577).png "Hasil Soal 3d(3577)")
+
+
+_**Kendala:**_
+tidak bisa memasukkan file coba1.txt dan coba2.txt ke seluruh folder, hanya bisa memasukkan secara acak ke berbagai folder
