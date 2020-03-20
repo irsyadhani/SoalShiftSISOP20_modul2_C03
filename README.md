@@ -43,7 +43,7 @@ detik pada jam 07:34.
 
 # Soal 2 (Program Kiwa)
   
-_**Soal 2:**_\
+_**Soal 2:**_
 
 Shisoppu mantappu! itulah yang selalu dikatakan Kiwa setiap hari karena sekarang dia
 merasa sudah jago materi sisop. Karena merasa jago, suatu hari Kiwa iseng membuat
@@ -235,7 +235,10 @@ if(argc != 2 || (argv[1][1] != 'a' && argv[1][1] != 'b')){
 if(argv[1][1] == 'a') prctl(PR_SET_PDEATHSIG, SIGHUP);
 ```
 Hasil eksekusi program:
-![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e.png "Hasil Soal 2e")
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e-a.png "Hasil Soal 2e dengan mode -a")
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e-a(result).png "Hasil Soal 2e mode -a dengan melihatkan proses PID")
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e-b.png "Hasil Soal 2e dengan mode -b")
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e-b(result).png "Hasil Soal 2e mode -b dengan melihatkan proses PID")
 
 _**Kendala:**_
 Dalam interval setelah 30 detik membuat folder sudah berhasil, akan tetapi pada saat membuat folder selanjutnya lagi dibuat dalam interval 1,5 menit yang seharusnya tidak ada di perintah soal.
