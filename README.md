@@ -32,18 +32,122 @@ sesuai
 Contoh: ./program \* 34 7 /home/somi/test.sh
 Program dengan argumen seperti contoh di atas akan menjalankan script test.sh setiap
 detik pada jam 07:34.
-> Source Code: [Sumber](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal1/soal1.c)
+> Source Code: [Soal 1](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal1/soal1.c)
+
+#
+
 # Soal 2 (Program Kiwa)
-   _**Soal:**_\
-   
+  
+_**Soal 2:**_\
+
+Shisoppu mantappu! itulah yang selalu dikatakan Kiwa setiap hari karena sekarang dia
+merasa sudah jago materi sisop. Karena merasa jago, suatu hari Kiwa iseng membuat
+sebuah program.
+> Source Code: [Soal 2](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/soal2.c)
+
+#
+
+#### Soal 2.a:
+Pertama-tama, Kiwa membuat sebuah folder khusus, di dalamnya dia membuat
+sebuah program C yang per 30 detik membuat sebuah folder dengan nama
+timestamp **[YYYY-mm-dd_HH:ii:ss]**.
+
+_**Penyelesaian:**_
+
+
+
+```c
+kode
+```
+Hasil eksekusi program:
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2a.png "Hasil Soal 2a")
+
+#
+
+#### Soal 2.b:
+Tiap-tiap folder lalu diisi dengan 20 gambar yang di download dari
+**https://picsum.photos/**, dimana tiap gambar di download setiap 5 detik. Tiap
+gambar berbentuk persegi dengan ukuran _**(t%1000)+100**_ piksel dimana t adalah
+detik Epoch Unix. Gambar tersebut diberi nama dengan format timestamp **[YYYY-
+mm-dd_HH:ii:ss]**.
+
+_**Penyelesaian:**_
+
+
+
+```c
+kode
+```
+Hasil eksekusi program:
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2b.png "Hasil Soal 2b")
+
+#
+
+#### Soal 2.c:
+Agar rapi, setelah sebuah folder telah terisi oleh 20 gambar, folder akan di zip dan
+folder akan di delete(sehingga hanya menyisakan .zip).
+
+_**Penyelesaian:**_
+
+
+
+```c
+kode
+```
+Hasil eksekusi program:
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2c.png "Hasil Soal 2c")
+
+#
+
+#### Soal 2.d:
+Karena takut program tersebut lepas kendali, Kiwa ingin program tersebut men-
+generate sebuah program "killer" **yang siap di run(executable)** untuk
+menterminasi semua operasi program tersebut. Setelah di run, program yang
+menterminasi ini lalu akan mendelete dirinya sendiri.
+
+_**Penyelesaian:**_
+
+
+
+```c
+kode
+```
+Hasil eksekusi program:
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2d.png "Hasil Soal 2d")
+
+#
+
+#### Soal 2.d:
+Kiwa menambahkan bahwa program **utama** bisa dirun dalam dua mode, yaitu
+MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan
+dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen
+-b. Ketika dijalankan dalam MODE_A, program utama akan langsung
+menghentikan semua operasinya ketika program killer dijalankan. Untuk
+MODE_B, ketika program killer dijalankan, program utama akan berhenti tapi
+membiarkan proses di setiap folder yang masih berjalan sampai selesai(semua
+folder terisi gambar, terzip lalu di delete).
+
+_**Penyelesaian:**_
+
+
+
+```c
+kode
+```
+Hasil eksekusi program:
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal2/gambar/soal2e.png "Hasil Soal 2e")
+
+#
+
+
 # Soal 3 (Multiprocessing Jaya)
 
-_**Soal:**_
+_**Soal 3:**_
 
 Jaya adalah seorang programmer handal mahasiswa informatika. Suatu hari dia
 memperoleh tugas yang banyak dan berbeda tetapi harus dikerjakan secara bersamaan
 (multiprocessing).
-> Source Code: [Sumber](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal3/soal3.c)
+> Source Code: [Soal 3](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal3/soal3.c)
 
 #
 
