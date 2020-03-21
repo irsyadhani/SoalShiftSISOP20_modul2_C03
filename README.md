@@ -284,6 +284,10 @@ int main(int argc, char *argv[]) {
 }
 ```
 
+* Keenam, membuat sebuah program ```.sh``` untuk mencoba program ```Daemon``` yang sudah dibuat. Programnya akan dinamakan ```testing.sh``` berisikan ```date``` .
+
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal1/Praktikum%202/testing.png "Program testing.sh")
+
 # 
 
 # Soal 2 (Program Kiwa)
