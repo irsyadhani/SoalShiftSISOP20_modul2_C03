@@ -288,6 +288,11 @@ int main(int argc, char *argv[]) {
 
 ![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal1/Praktikum%202/testing.png "Program testing.sh")
 
+* Ketujuh, program ```testing.sh``` dijalankan menggunakan program ```Daemon``` yang kita buat.
+
+![alt text](https://github.com/irsyadhani22/SoalShiftSISOP20_modul2_C03/blob/master/soal1/Praktikum%202/sukses.png "Hasil eksekusi program Daemon")
+
+
 # 
 
 # Soal 2 (Program Kiwa)
