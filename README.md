@@ -41,6 +41,251 @@ detik pada jam 07:34.
 
 #
 
+_**Penyelesaian:**_
+
+* Pertama, membuat code untuk menerima input 4 argumen dimana 3 argumen pertama menerima detik, menit, dan jam
+```c 
+ len = strlen(argv[1]);
+ if(len > 2){
+    printf("ERROR INPUT!");
+    exit(EXIT_FAILURE);
+  }
+  else if(strcmp(argv[1],"*") != 0){
+    if(atoi(argv[1]) > 60){
+      printf("ERROR INPUT!");
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  len = strlen(argv[2]);
+  if(len > 2){
+    printf("ERROR INPUT!");
+    exit(EXIT_FAILURE);
+    }
+    else if(strcmp(argv[1],"*") != 0){
+      if(atoi(argv[2]) > 60){
+     printf("ERROR INPUT!");
+     exit(EXIT_FAILURE);
+      }
+    }
+  len=strlen(argv[3]);
+  if(len > 2){
+    printf("ERROR INPUT!");
+    exit(EXIT_FAILURE);
+  }
+  else if(strcmp(argv[1],"*") != 0){
+    if(atoi(argv[3]) > 24){
+    printf("ERROR INPUT!");
+    exit(EXIT_FAILURE);
+    }
+  }
+ ```
+
+* Kedua, membuat error argument. Disini menggunakan flag dimana flagnya adalah err. Jadi, setiap pengecekan 4 argumen yang dideklarasikan di atas akan di cek. Apabila salah input, flag akan bertambah lalu masuk ke dalam if untuk pengecekan error. Hal ini berlaku juga untuk argumen yang ke 4.
+```c
+  struct stat st = {0};
+  if(err > 0){
+    printf("ERROR INPUT!\n");
+    exit(EXIT_FAILURE);
+  }
+  if(stat(argv[4],&st) != 0){
+    printf("ERROR PATH!\n");
+    exit(EXIT_FAILURE);
+  }
+```
+* Ketiga, membuat struct untuk menerima format jam,menit, dan detik.
+```c
+    time_t rawtime;
+    struct tm * timeinfo;
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+```
+
+* Keempat, membuat fungsi ```exec``` untuk mengecek argumen 1 sampai 3 apakah yang diinputkan merupakan "*" atau angka dan mengecek apakah argumen ke-4 itu ```.sh``` atau bukan.
+
+```c
+  char *program[] = {"bash",argv[4],NULL};
+
+    if(strcmp(argv[1],"*") == 0){
+      if(strcmp(argv[2],"*") == 0){
+
+        if(strcmp(argv[3],"*") == 0){
+          while(1){
+            if(run = fork() == 0){
+              execvp("/bin/bash",program);
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime (&rawtime);
+          }
+        }
+
+        else{
+          while (1) {
+            if(atoi(argv[3]) == timeinfo->tm_hour){
+              if(run = fork() == 0){
+                execvp("/bin/bash",program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime (&rawtime);
+          }
+        }
+      }
+
+      else{
+        if(strcmp(argv[3],"*") == 0){
+          while (1) {
+            if(atoi(argv[2]) == timeinfo->tm_min){
+              if(run = fork() == 0){
+                execvp("/bin/bash", program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime ( &rawtime );
+          }
+        }
+
+        else{
+          while (1) {
+            if(atoi(argv[3]) == timeinfo->tm_hour && atoi(argv[2]) == timeinfo->tm_min){
+              if(run = fork() == 0){
+                execvp("/bin/bash", program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime ( &rawtime );
+          }
+        }
+      }
+    }
+
+
+
+    else {
+
+
+      if(strcmp(argv[2],"*") == 0){
+        if(strcmp(argv[3],"*") == 0){
+          while (1) {
+            if(atoi(argv[1]) == timeinfo->tm_sec){
+              if(run = fork() == 0){
+                execvp("/bin/bash", program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime ( &rawtime );
+          }
+        }
+
+        else{
+          while (1) {
+            if(atoi(argv[1]) == timeinfo->tm_sec && atoi(argv[3]) == timeinfo->tm_hour){
+              if(run = fork() == 0){
+                execvp("/bin/bash", program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime ( &rawtime );
+          }
+        }
+      }
+
+
+      else{
+
+        if(strcmp(argv[3],"*") == 0){
+          while(1){
+            if(atoi(argv[2]) == timeinfo->tm_min && atoi(argv[1]) == timeinfo->tm_sec){
+              if(run = fork() == 0){
+                execvp("/bin/bash", program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime ( &rawtime );
+          }
+        }
+
+        else{
+          while (1) {
+            if(atoi(argv[3]) == timeinfo->tm_hour && atoi(argv[2]) == timeinfo->tm_min && atoi(argv[1]) == timeinfo->tm_sec){
+              if(run = fork() == 0){
+                execvp("/bin/bash", program);
+              }
+            }
+            sleep(1);
+            time(&rawtime);
+            timeinfo = localtime ( &rawtime );
+          }
+        }
+      }
+    }
+```
+
+* Kelima, semua code diatas dimasukkan ke dalam ```Daemon``` agar bisa berjalan di background. Untuk code ```Daemon``` sesuai dengan template yang ada di dalam ```Modul 2```. Tidak lupa membuat ```int main(int argc, char *argv[])``` untuk menerima argumen integer dan char. Lalu, menambahkan library ```#include <wait.h>``` , ```#include <ctype.h>``` , dan ```#include <time.h>``` . Berikut ```Daemon``` yang sudah disiapkan untuk menjalankan code diatas.
+
+```c
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <unistd.h>
+#include <syslog.h>
+#include <string.h>
+#include <time.h>
+#include <wait.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]) {
+
+  pid_t pid, sid;
+
+  pid = fork();
+
+  if (pid < 0) {
+    exit(EXIT_FAILURE);
+  }
+
+
+  if (pid > 0) {
+    exit(EXIT_SUCCESS);
+  }
+
+  umask(0);
+
+  sid = setsid();
+  if (sid < 0) {
+    exit(EXIT_FAILURE);
+  }
+
+  if ((chdir("/")) < 0) {
+    exit(EXIT_FAILURE);
+  } 
+
+  
+  
+     close(STDIN_FILENO);
+     close(STDOUT_FILENO);
+     close(STDERR_FILENO);
+
+
+  while (1) {
+  pid_t run;
+  ***
+  }
+}
+```
+
+# 
+
 # Soal 2 (Program Kiwa)
   
 _**Soal 2:**_
