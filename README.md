@@ -5,14 +5,14 @@ Kelompok C03:
 
 ----------------------------------------------------------------
 ## Soal
-* [Soal 1](#soal-1)
-* [Soal 2](#soal-2)
+* [Soal 1](#Soal-1-(Program-C-Menyerupai-Crontab))
+* [Soal 2](#Soal-2-(Program-Kiwa))
   * [Soal 2.a.](#soal-2a)
   * [Soal 2.b.](#soal-2b)
   * [Soal 2.c.](#soal-2c)
   * [Soal 2.d.](#soal-2d)
   * [Soal 2.e.](#soal-2e)
-* [Soal 3](#soal-3)
+* [Soal 3](#Soal-3-(Multiprocessing-Jaya))
   * [Soal 3.a.](#soal-3a)
   * [Soal 3.b.](#soal-3b)
   * [Soal 3.c.](#soal-3c)
